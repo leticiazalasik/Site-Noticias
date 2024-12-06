@@ -9,8 +9,8 @@ export default function CategoryNav({ categorias }: { categorias: Categoria[] })
         <Link
           key={categoria.id}
           href={`/categoria/${categoria.id}`}
-          className="px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 whitespace-nowrap"
-        >
+          className="px-4 py-2 rounded-full  bg-gray-800 text-white whitespace-nowrap"
+          >
           {categoria.nome}
         </Link>
       ))}
