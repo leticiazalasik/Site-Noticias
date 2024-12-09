@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth/nextjs": "^0.0.0-380f8d56",
     "@prisma/client": "^6.0.1",
+    "@types/js-cookie": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "js-cookie": "^3.0.5",
     "next": "15.0.4",
