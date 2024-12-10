@@ -1,11 +1,17 @@
 // app/page.tsx
-import { prisma } from "@/lib/prisma"
-import NoticiaCard from "@/components/Noticia.card"
-import CategoryNav from "src/components/CategoyNav"
+import { prisma } from "@/lib/prisma";
+import NoticiaCard from "@/components/Noticia.card";
+import CategoryNav from "@/components/CategoyNav";
+import Pagination from "@/components/Pagination";
 
-export default async function Home() {
+export default async function Home({ searchParams }: { searchParams: { page?: string } }) {
+  const page = parseInt(searchParams.page || '1', 10);
+  const limit = 10;
+  const offset = (page - 1) * limit;
+
   const noticias = await prisma.noticia.findMany({
-    take: 10,
+    skip: offset,
+    take: limit,
     orderBy: {
       dataPublicacao: 'desc'
     },
@@ -13,9 +19,12 @@ export default async function Home() {
       categoria: true,
       autor: true
     }
-  })
+  });
 
-  const categorias = await prisma.categoria.findMany()
+  const totalNoticias = await prisma.noticia.count();
+  const totalPages = Math.ceil(totalNoticias / limit);
+
+  const categorias = await prisma.categoria.findMany();
 
   return (
     <main className="container mx-auto px-4">
@@ -26,6 +35,8 @@ export default async function Home() {
           <NoticiaCard key={noticia.id} noticia={noticia} />
         ))}
       </div>
+
+      <Pagination currentPage={page} totalPages={totalPages} />
     </main>
-  )
+  );
 }
