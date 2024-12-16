@@ -22,6 +22,7 @@ export default async function NoticiaPage({ params }: Props) {
   if (!noticia) {
     notFound()
   }
+  
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -51,6 +52,13 @@ export default async function NoticiaPage({ params }: Props) {
           {noticia.conteudo}
         </div>
       </article>
+
+      <Link 
+            href={`/`}
+            className="text-blue-500 hover:underline"
+          >
+          Voltar
+          </Link>
     </main>
   )
 }
