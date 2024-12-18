@@ -1,8 +1,7 @@
-// app/layout.tsx
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { AuthProvider } from '@/contexts/AuthProvider'
+import { AuthProvider } from '@/contexts/AuthProvider' 
 import Header from '@/components/shared/Header'
 import Footer from '@/components/shared/Footer'
 
@@ -20,10 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      
       <body className={inter.className}>
-      <Header />
-        <AuthProvider>{children}</AuthProvider>
+       
+        <AuthProvider>
+          <Header />
+          {children}
+        </AuthProvider>
         <Footer />
       </body>
     </html>

@@ -10,7 +10,7 @@ async function main() {
     data: {
       email: 'admin@example.com',
       senha: await bcrypt.hash('123456', 10),
-      nome: 'Administrador'
+      nome: 'Administrador Paulo'
     }
   })
 
