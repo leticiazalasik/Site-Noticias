@@ -16,7 +16,7 @@ export default function Header() {
           </li>
           <li>
             {user ? (
-              <Link href="/auth/dashboard" className="hover:text-gray-300">{`${user.name}`}</Link> // Exibe o nome do usuário
+              <Link href="/admin" className="hover:text-gray-300">{`${user.name}`}</Link> // Exibe o nome do usuário
             ) : (
               <Link href="/auth/login" className="hover:text-gray-300">Entrar</Link>
             )}
@@ -26,3 +26,4 @@ export default function Header() {
     </header>
   );
 }
+
