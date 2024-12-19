@@ -1,6 +1,6 @@
 # Site de notícias
 
-esse projeto é uma prática de estudos de React. 
+Esse projeto é uma prática de estudos de React. 
 Alguns pontos importantes implementados: 
 
 #### :small_blue_diamond: Api de imagens. 
@@ -13,11 +13,12 @@ Alguns pontos importantes implementados:
 #### :small_blue_diamond: Usei session storage para salvar as informações de login, caso saia da página clicando em conectar ele resgata suas credenciais. 
 #### :small_blue_diamond: Para logout além de desconectar apaga todas as informações do session storage. 
 
+
 ## 👨‍💻️ Tecnologias Utilizadas:
 
 Vscode - REACT, HTML, CSS, Prisma, NodeJs. 
 
-### Para executar o projeto:
+Para executar o projeto:
 npm run dev
 Abrir [http://localhost:3000] no navegador 
 
