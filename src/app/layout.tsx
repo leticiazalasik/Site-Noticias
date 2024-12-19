@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { AuthProvider } from '@/contexts/AuthProvider' 
+import { AuthProvider } from '@/contexts/AuthProvider'
 import Header from '@/components/shared/Header'
 import Footer from '@/components/shared/Footer'
 
@@ -20,7 +20,6 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-       
         <AuthProvider>
           <Header />
           {children}

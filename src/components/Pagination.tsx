@@ -1,7 +1,7 @@
-// components/Pagination.tsx
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 interface PaginationProps {
   currentPage: number;
@@ -9,8 +9,10 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages }) => {
+  const router = useRouter();
+
   const handlePageChange = (page: number) => {
-    window.location.href = `/?page=${page}`;
+    router.push(`/?page=${page}`);
   };
 
   return (

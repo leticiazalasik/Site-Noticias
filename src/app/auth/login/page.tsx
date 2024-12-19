@@ -1,15 +1,23 @@
 "use client";
 
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useAuth } from "@/contexts/AuthProvider"; 
+import { useState, useEffect } from "react";
+import { useAuthSession } from "./useAuthSession";
 
 export default function LoginPage() {
-  const { setUser } = useAuth();
+  const { user, loading, update } = useAuthSession();
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const { data: session } = useSession(); 
+
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
+
+  if (user) {
+    router.push("/admin");
+    return null;
+  }
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -18,28 +26,19 @@ export default function LoginPage() {
     const password = formData.get("password");
 
     try {
-     
       const result = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
 
-     
       if (result?.error) {
         setError("Credenciais inválidas");
         return;
       }
 
-   
-      if (session?.user?.name) {
-       
-        setUser({ name: session.user.name });
-      }
-
-    
       router.push("/admin");
-      router.refresh(); 
+      router.refresh();
     } catch (error) {
       setError("Erro ao fazer login");
     }

@@ -2,9 +2,19 @@
 
 import { useAuth } from '@/contexts/AuthProvider'; // Importando o hook useAuth
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 export default function Header() {
-  const { user } = useAuth(); // Pega o usuário do contexto
+  const { user, setUser } = useAuth(); // Pega o usuário do contexto
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut({ redirect: false });
+    sessionStorage.clear(); // Limpa todas as informações do usuário do sessionStorage
+    setUser(null); // Reseta o estado do usuário no contexto
+    router.push("/"); // Redireciona para a página inicial
+  };
 
   return (
     <header className="bg-gray-800 text-white p-4">
@@ -16,9 +26,11 @@ export default function Header() {
           </li>
           <li>
             {user ? (
-              <Link href="/admin" className="hover:text-gray-300">{`${user.name}`}</Link> // Exibe o nome do usuário
+              <>
+                <Link href="/admin" className="hover:text-gray-300">{`${user.name}`}</Link> {/* Exibe o nome do usuário */}
+              </>
             ) : (
-              <Link href="/auth/login" className="hover:text-gray-300">Entrar</Link>
+              <Link href="/auth/login" className="hover:text-gray-300">Conectar</Link>
             )}
           </li>
         </ul>
@@ -26,4 +38,3 @@ export default function Header() {
     </header>
   );
 }
-
